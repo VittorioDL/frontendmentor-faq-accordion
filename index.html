@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | FAQ Accordion Card</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main>
+    <article class="card">
+      <div class="hero-img-container">
+        <img class="hero-img-mobile" src="./images/illustration-woman-online-mobile.svg" alt="">
+        <div class="overflow-hidden">
+          <img class="hero-img" src="./images/illustration-woman-online-desktop.svg" alt="">
+          <img class="hero-shadow-img" src="./images/bg-pattern-desktop.svg" alt="">
+        </div>
+        <img class="box-img" src="./images/illustration-box-desktop.svg" alt="">
+      </div>
+
+      <div class="content">
+        <h1 class="title">FAQ</h1>
+        <div class="accordion">
+
+          <div class="question" data-number="1">
+            <p>How many team members can I invite?</p><img class="arrow" src="./images/icon-arrow-down.svg" alt="">
+            <div class="answer" data-number="1">
+              <p>
+                You can invite up to 2 additional users on the Free plan. There is no limit on
+                team members for the Premium plan.
+              </p>
+            </div>
+          </div>
+
+          <div class="question" data-number="2">
+            <p>What is the maximum file upload size?</p><img class="arrow" src="./images/icon-arrow-down.svg" alt="">
+            <div class="answer" data-number="2">
+              <p>No more than 2GB. All files in your account must fit your allotted storage space.</p>
+            </div>
+          </div>
+
+          <div class="question" data-number="3">
+            <p>How do I reset my password?</p><img class="arrow" src="./images/icon-arrow-down.svg" alt="">
+            <div class="answer" data-number="3">
+              <p>
+                Click “Forgot password” from the login page or “Change password” from your profile page.
+                A reset link will be emailed to you.
+              </p>
+            </div>
+          </div>
+
+          <div class="question" data-number="4">
+            <p>Can I cancel my subscription?</p><img class="arrow" src="./images/icon-arrow-down.svg" alt="">
+            <div class="answer" data-number="4">
+              <p>Yes! Send us a message and we’ll process your request no questions asked.</p>
+            </div>
+          </div>
+
+          <div class="question" data-number="5">
+            <p>Do you provide additional support?</p><img class="arrow" src="./images/icon-arrow-down.svg" alt="">
+            <div class="answer" data-number="5">
+              <p>Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+  </main>
+  <script>
+    var questions = document.querySelectorAll(".question");
+    var answers = document.querySelectorAll(".answer");
+    var arrows = document.querySelectorAll(".arrow");
+
+    questions.forEach(question => {
+      question.addEventListener("click", (e) =>{
+        var questionNumber = question.dataset.number;
+        answers.forEach(answer => {
+          if(answer.dataset.number == questionNumber){
+            answer.classList.toggle("show");
+            question.style.display = "block";
+            question.children[0].classList.toggle("active");
+            question.children[1].style.transform = "scaleY(-1)";
+          }
+          else{
+            answer.classList.remove("show");
+            questions.forEach(question => {
+              if(question.dataset.number != questionNumber){
+                question.style.display = "flex";
+                question.children[0].classList.remove("active");
+                question.children[1].style.transform = "scaleY(1)";
+              }
+            });
+          }
+        }); 
+      })
+    });
+
+  </script>
+</body>
+
+</html>
